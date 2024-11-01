@@ -21,7 +21,7 @@ import ballerina/log;
 import ballerina/time;
 
 // Define file extensions to be accepted as template files
-public type TemplateFileType "bal"|"md"|"json"|"yaml"|"yml"|"toml"|"gradle"|"properties"|"gitignore"|"txt"|"jar"|"sh"|"bat"|"LICENSE"|"CODEOWNERS";
+public type TemplateFileType "bal"|"md"|"json"|"yaml"|"yml"|"toml"|"gradle"|"properties"|"gitignore"|"txt"|"sh"|"bat"|"LICENSE"|"CODEOWNERS";
 
 # This function generates a connector template with the given metadata.
 #
@@ -81,7 +81,7 @@ function processFile(string filePath, map<string> placeholders) returns error? {
         content = re `\{\{${placeholder}\}\}`.replaceAll(content, value);
     }
 
-    check io:fileWriteString(filePath, content);
+    check io:fileWriteString(filePath, content + "\n");
     log:printInfo("Added file: " + filePath);
 }
 
